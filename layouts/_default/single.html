@@ -1,0 +1,32 @@
+{{ define "title" }}
+    {{ .Title }} | {{ .Site.Title }}
+{{ end }}
+
+{{ define "main" }}
+    <section class="section-padded">
+        <article class="single-post container">
+            <header>
+                <h1>{{ .Title }}</h1>
+                <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "January 2, 2006" }}</time>
+                {{ with .Params.tags }}
+                <div class="post-tags">
+                    {{ range . }}
+                        <a href="{{ "tags" | absURL }}/{{ . | urlize }}">{{ . }}</a>
+                    {{ end }}
+                </div>
+                {{ end }}
+            </header>
+            <div class="post-content">
+                {{ .Content }}
+            </div>
+            <div class="post-navigation">
+                {{ if .PrevInSection }}
+                    <a href="{{ .PrevInSection.Permalink }}" class="nav-prev">&larr; Previous Post</a>
+                {{ end }}
+                {{ if .NextInSection }}
+                    <a href="{{ .NextInSection.Permalink }}" class="nav-next">Next Post &rarr;</a>
+                {{ end }}
+            </div>
+        </article>
+    </section>
+{{ end }}
