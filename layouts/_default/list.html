@@ -1,0 +1,73 @@
+{{ define "title" }}
+    {{ if .IsHome }}
+        {{ .Site.Title }} - {{ .Site.Params.description }}
+    {{ else }}
+        {{ .Title }} | {{ .Site.Title }}
+    {{ end }}
+{{ end }}
+
+{{ define "main" }}
+    <section class="hero">
+        <div class="hero-content">
+            <h1>{{ .Site.Title }}</h1>
+            <p>{{ .Site.Params.description }}</p>
+            <a href="/menu/" class="btn primary-btn">View Our Menu</a>
+            <a href="/contact/" class="btn secondary-btn">Contact Us</a>
+        </div>
+    </section>
+
+    {{ if .IsHome }}
+        <section class="latest-posts section-padded">
+            <div class="container">
+                <h2>From Our Blog</h2>
+                <div class="post-grid">
+                    {{ $paginator := .Paginate (where .Site.RegularPages "Section" "posts") }}
+                    {{ range $paginator.Pages }}
+                        <article class="post-card">
+                            <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+                            <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "January 2, 2006" }}</time>
+                            <p>{{ .Summary }}</p>
+                            {{ if .Truncated }}
+                                <a href="{{ .Permalink }}" class="read-more">Read More &rarr;</a>
+                            {{ end }}
+                        </article>
+                    {{ end }}
+                </div>
+                {{ template "_internal/pagination.html" . }}
+            </div>
+        </section>
+
+        <section class="section-padded" id="homepage-main-content">
+            <div class="container">
+                {{ .Content }}
+            </div>
+        </section>
+
+        <section class="call-to-action section-padded">
+            <div class="container">
+                <h2>Ready for something sweet?</h2>
+                <p>Visit us today or place an order for your next special occasion!</p>
+                <a href="/contact/" class="btn primary-btn">Get in Touch</a>
+            </div>
+        </section>
+    {{ else }}
+        <section class="section-padded">
+            <div class="container">
+                <h1>{{ .Title }}</h1>
+                <div class="post-grid">
+                    {{ range .Paginator.Pages }}
+                        <article class="post-card">
+                            <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+                            <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "January 2, 2006" }}</time>
+                            <p>{{ .Summary }}</p>
+                            {{ if .Truncated }}
+                                <a href="{{ .Permalink }}" class="read-more">Read More &rarr;</a>
+                            {{ end }}
+                        </article>
+                    {{ end }}
+                </div>
+                {{ template "_internal/pagination.html" . }}
+            </div>
+        </section>
+    {{ end }}
+{{ end }}
