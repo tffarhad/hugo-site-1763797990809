@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ block "title" . }}{{ .Site.Title }}{{ if not .IsHome }} - {{ .Title }}{{ end }}{{ end }}</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="wrapper">
+        {{ partial "header.html" . }}
+        <main id="content">
+            {{ block "main" . }}{{ end }}
+        </main>
+        {{ partial "footer.html" . }}
+    </div>
+</body>
+</html>
