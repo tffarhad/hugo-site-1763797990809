@@ -1,0 +1,36 @@
+baseURL = "http://example.com/"
+languageCode = "en-us"
+title = "Sweet Delights Bakery"
+theme = "" # We're defining all layouts directly, so no external theme
+defaultContentLanguage = "en"
+paginate = 5
+
+[params]
+  description = "Your local bakery offering fresh breads, pastries, and custom cakes."
+  address = "123 Main Street, Anytown, USA"
+  phone = "(555) 123-4567"
+  email = "info@sweetdelights.com"
+  social_facebook = "https://facebook.com/sweetdelights"
+  social_instagram = "https://instagram.com/sweetdelights"
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "Our Menu"
+    url = "/menu/" # Placeholder for a future menu page
+    weight = 2
+  [[menu.main]]
+    name = "Blog"
+    url = "/posts/"
+    weight = 3
+  [[menu.main]]
+    name = "Contact"
+    url = "/contact/" # Placeholder for a future contact page
+    weight = 4
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
